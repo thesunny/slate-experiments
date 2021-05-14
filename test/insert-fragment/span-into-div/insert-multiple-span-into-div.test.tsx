@@ -7,8 +7,12 @@ describe("insert span into div", () => {
       <fragment>
         <div>
           <text />
-          <span>
-            <text>abc</text>
+          <span id="fragment-1">
+            <text>a</text>
+          </span>
+          <text />
+          <span id="fragment-2">
+            <text>a</text>
           </span>
           <text />
         </div>
@@ -27,11 +31,13 @@ describe("insert span into div", () => {
       <editor>
         <div>
           <text>1</text>
-          <span>
+          <span id="fragment-1">
+            <text>a</text>
+          </span>
+          <text />
+          <span id="fragment-2">
             <text>
-              abc
-              {/* cursor is inside the inserted span here */}
-              <cursor />
+              a<cursor />
             </text>
           </span>
           <text>2</text>
@@ -46,8 +52,12 @@ describe("insert span into div", () => {
       <fragment>
         <div>
           <text />
-          <span>
-            <text>abc</text>
+          <span id="fragment-1">
+            <text>a</text>
+          </span>
+          <text />
+          <span id="fragment-2">
+            <text>a</text>
           </span>
           <text />
         </div>
@@ -67,11 +77,13 @@ describe("insert span into div", () => {
       <editor>
         <div>
           <text></text>
-          <span>
+          <span id="fragment-1">
+            <text>a</text>
+          </span>
+          <text />
+          <span id="fragment-2">
             <text>
-              abc
-              {/* cursor is inside the inserted span here */}
-              <cursor />
+              a<cursor />
             </text>
           </span>
           <text>12</text>
@@ -86,8 +98,12 @@ describe("insert span into div", () => {
       <fragment>
         <div>
           <text />
-          <span>
-            <text>abc</text>
+          <span id="fragment-1">
+            <text>a</text>
+          </span>
+          <text />
+          <span id="fragment-2">
+            <text>a</text>
           </span>
           <text />
         </div>
@@ -107,10 +123,14 @@ describe("insert span into div", () => {
       <editor>
         <div>
           <text>12</text>
-          <span>
-            <text>abc</text>
+          <span id="fragment-1">
+            <text>a</text>
           </span>
-          {/* but unexpectedly the cursor moves outside the span when inserted
+          <text />
+          <span id="fragment-2">
+            <text>a</text>
+          </span>
+          {/* unexpectedly the cursor moves outside the span when inserted
            * at the end
            */}
           <text>

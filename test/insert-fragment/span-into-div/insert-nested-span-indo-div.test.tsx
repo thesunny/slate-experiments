@@ -8,7 +8,11 @@ describe("insert span into div", () => {
         <div>
           <text />
           <span>
-            <text>abc</text>
+            <text />
+            <span>
+              <text>abc</text>
+            </span>
+            <text />
           </span>
           <text />
         </div>
@@ -28,9 +32,15 @@ describe("insert span into div", () => {
         <div>
           <text>1</text>
           <span>
+            <text />
+            <span>
+              <text>
+                abc
+                <cursor />
+              </text>
+            </span>
             <text>
-              abc
-              {/* cursor is inside the inserted span here */}
+              {/* cursor is inside last text at the top level of inserted nested span */}
               <cursor />
             </text>
           </span>
@@ -47,7 +57,11 @@ describe("insert span into div", () => {
         <div>
           <text />
           <span>
-            <text>abc</text>
+            <text />
+            <span>
+              <text>abc</text>
+            </span>
+            <text />
           </span>
           <text />
         </div>
@@ -67,10 +81,14 @@ describe("insert span into div", () => {
       <editor>
         <div>
           <text></text>
+
           <span>
+            <text />
+            <span>
+              <text>abc</text>
+            </span>
             <text>
-              abc
-              {/* cursor is inside the inserted span here */}
+              {/* cursor is inside last text at the top level of inserted nested span */}
               <cursor />
             </text>
           </span>
@@ -87,7 +105,11 @@ describe("insert span into div", () => {
         <div>
           <text />
           <span>
-            <text>abc</text>
+            <text />
+            <span>
+              <text>abc</text>
+            </span>
+            <text />
           </span>
           <text />
         </div>
@@ -108,7 +130,11 @@ describe("insert span into div", () => {
         <div>
           <text>12</text>
           <span>
-            <text>abc</text>
+            <text />
+            <span>
+              <text>abc</text>
+            </span>
+            <text />
           </span>
           {/* but unexpectedly the cursor moves outside the span when inserted
            * at the end
