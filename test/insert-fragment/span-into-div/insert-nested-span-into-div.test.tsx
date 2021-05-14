@@ -136,10 +136,10 @@ describe("insert span into div", () => {
             </span>
             <text />
           </span>
-          {/* but unexpectedly the cursor moves outside the span when inserted
-           * at the end
-           */}
           <text>
+            {/* unexpectedly the cursor moves outside the span when inserted
+             * at the end
+             */}
             <cursor />
           </text>
         </div>
