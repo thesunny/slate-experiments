@@ -94,9 +94,9 @@ export function log(...values: any[]) {
  */
 export function logEditor(editor: Editor) {
   console.log("=== CHILDREN ===")
-  console.log(stringify(editor.children, null, 2))
+  console.log(stringify(editor.children))
   console.log("=== SELECTION ===")
-  console.log(stringify(editor.selection, null, 2))
+  console.log(stringify(editor.selection))
 }
 
 /**
@@ -108,13 +108,13 @@ export function logEditor(editor: Editor) {
  */
 function logInputOuput(input: Editor, output: Editor) {
   console.log("=== INPUT CHILDREN ===")
-  console.log(stringify(input.children, null, 2))
+  console.log(stringify(input.children))
   console.log("=== OUTPUT CHILDREN ===")
-  console.log(stringify(output.children, null, 2))
+  console.log(stringify(output.children))
   console.log("=== INPUT SELECTION ===")
-  console.log(stringify(input.selection, null, 2))
+  console.log(stringify(input.selection))
   console.log("=== OUTPUT SELECTION ===")
-  console.log(stringify(output.selection, null, 2))
+  console.log(stringify(output.selection))
 }
 
 /**
