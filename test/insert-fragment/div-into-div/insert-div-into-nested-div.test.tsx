@@ -1,9 +1,8 @@
 /** @jsx jsx  */
-import { Editor, Node, Transforms } from "slate"
 import { assertInsertFragment, jsx } from "~/test/test-utils"
 
 /**
- * When inserting a div, in all three scenarios, only the text makes it in.
+ * Behavior appears to be the same as insert div into div
  */
 
 describe("insert div in div", () => {
@@ -17,21 +16,25 @@ describe("insert div in div", () => {
     )
     const input = (
       <editor>
-        <div>
-          <text>
-            1<cursor />2
-          </text>
+        <div id="outer">
+          <div id="inner">
+            <text>
+              1<cursor />2
+            </text>
+          </div>
         </div>
       </editor>
     )
     const output = (
       <editor>
-        <div>
-          <text>
-            {/* only the text makes it in */}
-            1abc
-            <cursor />2
-          </text>
+        <div id="outer">
+          <div id="inner">
+            <text>
+              {/* only the text makes it in */}
+              1abc
+              <cursor />2
+            </text>
+          </div>
         </div>
       </editor>
     )
@@ -48,23 +51,27 @@ describe("insert div in div", () => {
     )
     const input = (
       <editor>
-        <div>
-          <text>
-            <cursor />
-            12
-          </text>
+        <div id="outer">
+          <div id="inner">
+            <text>
+              <cursor />
+              12
+            </text>
+          </div>
         </div>
       </editor>
     )
     const output = (
       <editor>
-        <div>
-          <text>
-            {/* only the text makes it in */}
-            abc
-            <cursor />
-            12
-          </text>
+        <div id="outer">
+          <div id="inner">
+            <text>
+              {/* only the text makes it in */}
+              abc
+              <cursor />
+              12
+            </text>
+          </div>
         </div>
       </editor>
     )
@@ -81,22 +88,26 @@ describe("insert div in div", () => {
     )
     const input = (
       <editor>
-        <div>
-          <text>
-            12
-            <cursor />
-          </text>
+        <div id="outer">
+          <div id="inner">
+            <text>
+              12
+              <cursor />
+            </text>
+          </div>
         </div>
       </editor>
     )
     const output = (
       <editor>
-        <div>
-          <text>
-            {/* only the text makes it in */}
-            12abc
-            <cursor />
-          </text>
+        <div id="outer">
+          <div id="inner">
+            <text>
+              {/* only the text makes it in */}
+              12abc
+              <cursor />
+            </text>
+          </div>
         </div>
       </editor>
     )

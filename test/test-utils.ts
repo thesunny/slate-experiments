@@ -5,6 +5,10 @@ import { HistoryEditor, withHistory } from "slate-history"
 import isEqual from "lodash/isEqual"
 import stringify from "json-stringify-pretty-compact"
 
+/**
+ * Create `jsx` for Slate using `slate-hyperscript`
+ */
+
 export const jsx = createHyperscript({
   elements: {
     div: { type: "div" },
@@ -13,6 +17,10 @@ export const jsx = createHyperscript({
   },
 })
 
+/**
+ * A minimal editor that defines `void` and `span` types
+ */
+
 export function withEditor(editor: Editor): Editor {
   editor = withHistory(withReact(editor))
   editor.isVoid = (node) => node.type === "void"
@@ -20,10 +28,12 @@ export function withEditor(editor: Editor): Editor {
   return editor
 }
 
+/**
+ * Add a normalizer that removes empty spans
+ */
+
 export function withNormalizedSpanEditor(editor: Editor): Editor {
-  editor = withHistory(withReact(editor))
-  editor.isVoid = (node) => node.type === "void"
-  editor.isInline = (node) => node.type === "span"
+  editor = withEditor(editor)
   const originalNormalizeNode = editor.normalizeNode
   editor.normalizeNode = (nodeEntry) => {
     const [node, path] = nodeEntry
@@ -42,16 +52,13 @@ export function withNormalizedSpanEditor(editor: Editor): Editor {
   return editor
 }
 
-type JSXFromElement<T extends Element> = Omit<T, "type" | "children">
-type JSXFromText<T extends Text> = Omit<T, "text">
+/**
+ * Extend Slate's Element and Text type with our CustomTypes
+ */
 
 type Div = { type: "div"; id?: number | string; children: Array<Element> }
 type Span = { type: "span"; id?: number | string; children: Array<Text | Span> }
 type Void = { type: "void"; id?: number | string; children: Array<Text> }
-
-/**
- * Extend Slate's Element and Text type with our CustomTypes
- */
 
 declare module "slate" {
   interface CustomTypes {
@@ -60,6 +67,13 @@ declare module "slate" {
     Text: { id?: number | string; text: string }
   }
 }
+
+/**
+ * Add types for `jsx`
+ */
+
+type JSXFromElement<T extends Element> = Omit<T, "type" | "children">
+type JSXFromText<T extends Text> = Omit<T, "text">
 
 declare global {
   namespace jsx.JSX {
@@ -83,6 +97,9 @@ declare global {
   }
 }
 
+/**
+ * Logging with prettier output
+ */
 export function log(...values: any[]) {
   for (const value of values) {
     console.log(stringify(value))

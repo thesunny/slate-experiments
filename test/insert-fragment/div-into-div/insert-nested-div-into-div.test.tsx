@@ -1,16 +1,8 @@
 /** @jsx jsx  */
-import { Editor, Node, Transforms } from "slate"
 import { assertInsertFragment, jsx } from "~/test/test-utils"
 
 /**
- * `insertFragment` retrieves the selection and includes all ancestor nodes.
- *
- * - When you insert `Text`, the text gets inserted and the cursor is placed
- *   at the end of the `Text`. Then the normalizer is run so if the text have
- *   the same properties, they are merged.
- * - Insert span into text.
- *   - When a span is inserted, the cursor is at the end of the upper most span
- * - Insert span into span
+ * Inserted a nested div behaves identically to inserting a non-nested div.
  */
 
 describe("insert div in div", () => {
@@ -73,6 +65,9 @@ describe("insert div in div", () => {
       <editor>
         <div>
           <text>
+            {/*
+             * Only the text is inserted
+             */}
             abc
             <cursor />
             12
@@ -105,6 +100,9 @@ describe("insert div in div", () => {
       <editor>
         <div>
           <text>
+            {/*
+             * Only the text is inserted
+             */}
             12abc
             <cursor />
           </text>
