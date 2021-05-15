@@ -1,5 +1,4 @@
 /** @jsx jsx  */
-import { Editor, Node, Transforms } from "slate"
 import { assertInsertFragment, jsx } from "~/test/test-utils"
 
 describe("insert div in div", () => {

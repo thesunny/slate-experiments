@@ -173,3 +173,13 @@ export function assertInsertFragmentWithSpanNormalizer(
   Transforms.insertFragment(input, fragment)
   shouldEqual(input, output)
 }
+
+export function assertRun(
+  input: Editor,
+  output: Editor,
+  fn: (editor: Editor) => void
+) {
+  input = withEditor(input)
+  fn(input)
+  shouldEqual(input, output)
+}

@@ -1,18 +1,24 @@
 /** @jsx jsx  */
-import { assertInsertFragment, jsx } from "~/test/test-utils"
+import { assertInsertFragment, jsx } from "../test-utils"
 
-describe("insert div in div", () => {
-  it("insert multiple div into middle of div", async () => {
+const NESTED_SPAN = (
+  <span>
+    <text />
+    <span>
+      <text>abc</text>
+    </span>
+    <text />
+  </span>
+)
+
+describe("insert span into span", () => {
+  it("should insert a span in middle of a span", async () => {
     const fragment = (
       <fragment>
-        <div id="fragment-1">
-          <text>a</text>
-        </div>
-        <div id="fragment-2">
-          <text>b</text>
-        </div>
-        <div id="fragment-3">
-          <text>c</text>
+        <div>
+          <text />
+          {NESTED_SPAN}
+          <text />
         </div>
       </fragment>
     )
@@ -36,17 +42,10 @@ describe("insert div in div", () => {
           <span>
             <text>1</text>
           </span>
-          {/* first div's segment survivs */}
-          <text>a</text>
-        </div>
-        {/* the middle div survives */}
-        <div id="fragment-2">
-          <text>b</text>
-        </div>
-        <div>
-          {/* last div's segment survivs */}
+          <text />
+          {NESTED_SPAN}
           <text>
-            c<cursor />
+            <cursor />
           </text>
           <span>
             <text>2</text>
@@ -58,17 +57,13 @@ describe("insert div in div", () => {
     assertInsertFragment(input, fragment, output)
   })
 
-  it("insert div into start of div", async () => {
+  it("should insert a span at start of a span", async () => {
     const fragment = (
       <fragment>
-        <div id="fragment-1">
-          <text>a</text>
-        </div>
-        <div id="fragment-2">
-          <text>b</text>
-        </div>
-        <div id="fragment-3">
-          <text>c</text>
+        <div>
+          <text />
+          {NESTED_SPAN}
+          <text />
         </div>
       </fragment>
     )
@@ -88,41 +83,29 @@ describe("insert div in div", () => {
     )
     const output = (
       <editor>
-        {/* The first two divs survive */}
-        <div id="fragment-1">
-          <text>a</text>
-        </div>
-        <div id="fragment-2">
-          <text>b</text>
-        </div>
         <div>
-          {/*
-           * The last segment from the last div gets merged
-           */}
+          <text />
+          {NESTED_SPAN}
           <text>
-            c<cursor />
+            <cursor />
           </text>
           <span>
             <text>12</text>
           </span>
-          <text />
+          <text></text>
         </div>
       </editor>
     )
     assertInsertFragment(input, fragment, output)
   })
 
-  it("insert div into end of div", async () => {
+  it("should insert a span at end of a span", async () => {
     const fragment = (
       <fragment>
-        <div id="fragment-1">
-          <text>a</text>
-        </div>
-        <div id="fragment-2">
-          <text>b</text>
-        </div>
-        <div id="fragment-3">
-          <text>c</text>
+        <div>
+          <text />
+          {NESTED_SPAN}
+          <text />
         </div>
       </fragment>
     )
@@ -147,18 +130,10 @@ describe("insert div in div", () => {
           <span>
             <text>12</text>
           </span>
-          {/* first segment from the first div is merged */}
-          <text>a</text>
-        </div>
-        {/*
-         * the rest survive
-         */}
-        <div id="fragment-2">
-          <text>b</text>
-        </div>
-        <div id="fragment-3">
+          <text />
+          {NESTED_SPAN}
           <text>
-            c<cursor />
+            <cursor />
           </text>
         </div>
       </editor>
