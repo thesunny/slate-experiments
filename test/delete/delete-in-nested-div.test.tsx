@@ -41,7 +41,7 @@ describe("delete in div", () => {
     })
   })
 
-  it("delete in nested div", async () => {
+  it("delete in nested div with empty surrounding divs", async () => {
     const input = (
       <editor>
         <div>
@@ -85,7 +85,7 @@ describe("delete in div", () => {
     })
   })
 
-  it("delete in nested div", async () => {
+  it("delete in nested div with content in surrounding divs", async () => {
     const input = (
       <editor>
         <div>
